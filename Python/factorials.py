@@ -48,6 +48,24 @@ def fact_recur_dict(i):
         # print('2222')
         return i * fact_recur_dict(i-1)
 
+        
+def fact_generator(A):
+    def helper_gen():
+        lag_1 = 1 # start as fib(n-1)
+        n = 1
+        while True:
+            next = n * lag_1 
+            print("at n = %d, fib(n-1) = %d, fib(n) = %d " %(n-1, lag_1, next))
+            yield next
+            n += 1
+            lag_1 = next            
+            
+    count = 0
+    for n in helper_gen():
+        count += 1 
+        if count == A:
+            return n
+fact_generator(3)
 
 count_iter = 0
 count_rec = 0
@@ -57,6 +75,7 @@ fact_iter(16)
 fact_recur(16)
 fact_recur_dict(16)
 count_iter, count_rec, count_rec_dict
+fact_generator(16)
 
 count_iter = 0
 count_rec = 0
@@ -65,5 +84,6 @@ prev_dict = {}
 fact_iter(999)
 fact_recur(999)
 fact_recur_dict(999)
+fact_generator(999)
 
 count_iter, count_rec, count_rec_dict

@@ -53,3 +53,65 @@ A_3 = [2, 76, 46]
 solve(A_1)
 solve(A_2)
 solve(A_3)
+
+
+##############################
+# Editoral:
+    # Python
+# class Solution:
+#     # @param A : list of integers
+#     # @return an integer
+#     def solve(self, A):
+#         a, b = A[0], A[0] + A[1]
+#         for i in range(2, len(A)):
+#             a, b = b, A[i] + min(a, b)
+#         return b
+# class Solution:
+#     # @param A : list of integers
+#     # @return an integer
+#     def solve(self, a):
+#         res = -1
+#         b = a[0]
+#         c = b+a[1]
+#         for i in range(2,len(a)):
+#             res = min(b,c)+a[i]
+#             b = c 
+#             c = res
+#         return c
+    # C++
+#     int Solution::solve(vector<int> &A) {
+#     int n = A.size();
+#     assert(1 <= n && n <= 1e5);
+#     for(int &x: A) assert(1 <= x && x <= 1e4);
+#     A[1] += A[0];
+#     for(int i = 2; i < n; ++i){
+#         A[i] += min(A[i-1], A[i-2]);
+#     }
+#     return A.back();
+# }   
+    # Scala
+# class Solution {
+#   private val memory = scala.collection.mutable.Map[Int, Int]()
+
+#   def solve(A: Array[Int]): Int  = {
+#     val len = A.length
+#     val first: Int = A.head
+#     val last: Int = A(len - 1)
+
+
+#     if(len == 2 || len == 3) {
+#       return first + last
+#     }
+
+#     val a: Array[Int] = A.slice(1, len - 1)
+#     memory(0) = a(0)
+#     memory(1) = a(1)
+
+#     for(i <- 2 until a.length) {
+#       memory(i) = a(i) + Math.min(memory(i-1), memory(i-2))
+#     }
+
+#     first + Math.min(memory(a.length - 2), memory(a.length - 1)) + last
+#   }
+# }
+    

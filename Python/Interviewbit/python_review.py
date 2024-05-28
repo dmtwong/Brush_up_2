@@ -11,6 +11,9 @@ Created on Fri May 24 16:00:47 2024
 # 2. switch to console command: ctrl + shift + i
 # 3. switch to editor: " " + e
 
+# Updated: 2024/05/27:
+# 1. checkly review day 1 part (basic, flow control & function, strings)
+
 import datetime
 print(datetime.datetime.now().strftime("%D"))
 help(datetime.MAXYEAR) # variable
@@ -249,6 +252,9 @@ print('abcd1'.isalpha())
 # In the fifth line, print True if S has any uppercase characters. Otherwise, print False.
 
 S = input()
+
+    # In the first line, print True if S has any alphanumeric characters. Otherwise, print False.
+
 isTrue_1 = False
 n_S, i_S = (len(S), 0)
 cur_i_S = None
@@ -263,6 +269,8 @@ while isTrue_1 == False:
         break
 print(isTrue_1)
 
+    # In the second line, print True if S has any alphabetical characters. Otherwise, print False.
+
 isTrue_2, i_S = (False, 0)
 while isTrue_2 == False:
     if i_S == n_S:
@@ -274,6 +282,8 @@ while isTrue_2 == False:
     if isTrue_2 == True:
         break
 print(isTrue_2)
+
+    # In the third line, print True if S has any digits. Otherwise, print False.
 
 isTrue_2, i_S = (False, 0)
 # print(i_S)
@@ -290,6 +300,8 @@ while isTrue_2 == False:
         break
 print(isTrue_2)
 
+    # In the fourth line, print True if S has any lowercase characters. Otherwise, print False.
+
 isTrue_2, i_S = (False, 0)
 while isTrue_2 == False:
     if i_S == n_S:
@@ -302,6 +314,8 @@ while isTrue_2 == False:
     if isTrue_2 == True:
         break
 print(isTrue_2)
+
+    # In the fifth line, print True if S has any uppercase characters. Otherwise, print False.
 
 isTrue_2, i_S = (False, 0)    
 while isTrue_2 == False:
