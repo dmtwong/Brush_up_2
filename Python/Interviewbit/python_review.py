@@ -333,3 +333,357 @@ while isTrue_2 == False:
         break
 #pitn("Asd")
 print(isTrue_2)
+
+# Sect 4: Containers & Classes
+
+# # 4.1: Lists  
+
+# Lists are very similar to arrays. They can contain any type of variable, and they can contain as many variables as you wish.
+
+# List is a collection which is ordered and changeable. Allows duplicate members.
+
+# Lists can also be iterated over in a very simple manner. Below is an example to build a list.
+
+# my_list = []
+# # append insert the element at the end of the list
+# my_list.append(1)
+# my_list.append(2)
+# my_list.append(3)
+# print(my_list[0]) # prints 1
+# print(my_list[1]) # prints 2
+# print(my_list[2]) # prints 3
+# Accessing an index which does not exist generates an exception (an error).
+
+# my_list = [1,2,3]
+# print(my_list[5]) # Gives an error
+# Negative Indexing
+
+# Negative indexing means beginning from the end, -1 refers to the last item, -2 refers to the second last item etc.
+
+# my_list = [1, 2, 3]
+# print(my_list[-1]) #prints 3
+# print(my_list[-2]) #prints 2
+# Try the following example in the editor below:
+
+# You are given an empty list named names, you have to insert “Robin”, “Aman”, “Rahul” at the end of list one after other.
+
+def main():
+    names = []
+    # YOUR CODE GOES HERE
+    names_tb_added = ('Robin', 'Aman', 'Rahul')
+    for i in names_tb_added:
+        names.append(i)
+    
+    print(names)
+    return 0
+
+if __name__ == '__main__':
+    main()
+
+# # 4.2: Tuples
+# Python Collections
+
+# There are four collection data types in the Python programming language:
+
+# List is a collection which is ordered and changeable. Allows duplicate members.
+
+# Tuple is a collection which is ordered and unchangeable. Allows duplicate members.
+
+# Set is a collection which is unordered and unindexed. No duplicate members.
+
+# Dictionary is a collection which is unordered, changeable and indexed. No duplicate members.
+
+# We will discuss all four collection one by one, we had discussed List in one of the previous article.
+
+# Tuple
+
+# Tuple is similar to a list but once the tuple is created we can’t change the elements directly.
+
+# Creating a Tuple
+
+my_tuple = ('one', 'two', 'three')
+print(my_tuple)
+print ('one', 'two', 'three')
+# You can access tuple items by referring to the index number, inside square brackets:
+
+my_tuple = ('one', 'two', 'three')
+print(my_tuple[1])
+# print two
+# Is there any way to change Tuple Values?
+
+# Once a tuple is created, you cannot change its values. Tuples are unchangeable, or immutable as it also is called.
+#  But there is a workaround. You can convert the tuple into a list, change the list, and convert the list back into a tuple.
+# Self Note: but then it is a new tuple instance
+
+my_tuple = ('one', 'two', 'three')
+my_list = list(my_tuple)
+my_list[2] = 'two'
+my_tuple = tuple(my_list)
+print(my_tuple)
+# print ('one', 'two', 'two')
+# Create Tuple with One item
+
+# To create a tuple with only one item, you have to add a comma after the item, otherwise Python will not recognize it as a tuple.
+
+my_tuple = ("one",)
+print(type(my_tuple))
+
+# NOT a tuple
+my_tuple = ("one")
+print(type(my_tuple))
+# Join Two Tuples
+
+# To join two or more tuples you can use the + operator:
+
+my_tuple1 = ('one', 'two', 'three')
+my_tuple2 = ('1', '2', '3')
+my_tuple3 = my_tuple1 + my_tuple2
+print(my_tuple3)
+# Try the following example in the editor below.
+
+# Given two tuples called tuple1 and tuple2, perform the operations described in comments in the editor.
+def main():
+    tuple1 = tuple(("one", "two", "three"))
+    tuple2 = tuple(("1", "2", "3"))
+    
+    # change value at index 0 of both tuple to string "number"
+    # Your code goes here
+    to_be_added = ("number", )
+    tuple1 = to_be_added + tuple1[1:]
+    tuple2 = to_be_added + tuple2[1:]
+    print(tuple1)
+    print(tuple2)
+    
+    return 0
+
+if __name__ == '__main__':
+    main()  
+
+# # 4.3: dictionary
+# A dictionary is a collection which is unordered, changeable and indexed. In Python dictionaries are written with curly brackets, and they have keys and values.
+
+my_dict = {1 : 'Robin', 2 : 'Rahul', 3 : 'Aman'}
+print(my_dict)
+# Dictionary with the use of Mixed Keys.
+my_dict = {'One' : 'Robin', 2 : 'Rahul'}
+print(my_dict)
+# Accessing Items
+
+# You can access the items of a dictionary by referring to its key name, inside square brackets.
+
+# There is also a method called get() that will give you the same result.
+
+my_dict = {1 : 'Robin', 2 : 'Rahul', 3 : 'Aman'}
+val = my_dict[2]
+print(val) # print 'Rahul'
+
+# using get()
+val = my_dict.get(2)
+print(val) # print 'Rahul'
+# Change Values
+
+# You can change the value of a specific item by referring to its key name.
+
+my_dict = {1 : 'Robin', 2 : 'Rahul', 3 : 'Aman'}
+my_dict[2] = 'Rohan'
+val = my_dict[2]
+print(val) # print 'Rohan'
+# Loop through a Dictionary
+
+# You can loop through a dictionary by using a for loop.
+ # When looping through a dictionary, the return value are the keys of the dictionary, but there are methods to return the values as well.
+
+my_dict = {1 : 'Robin', 2 : 'Rahul', 3 : 'Aman'}
+for x in my_dict:
+    print(x)    # print 1 2 3
+
+# values() method to return values of a dictionary
+for x in my_dict.values():
+    print(x)    # print 'Robin' 'Rahul' 'Aman'
+
+# Loop through both keys and values, by using the items() method
+for key, val in my_dict.items():
+    print(key, val)
+# Adding Items
+
+# Adding an item to the dictionary is done by using a new index key and assigning a value to it.
+
+my_dict = {1 : 'Robin', 2 : 'Rahul', 3 : 'Aman'}
+my_dict[4] = 'Shivam'  # Added item key is 4 and value is 'Shivam'
+print(my_dict)
+# Removing Items
+
+# There are several methods to remove items from a dictionary.
+
+# The pop() method removes the item with the specified key name.
+
+my_dict = {1 : 'Robin', 2 : 'Rahul', 3 : 'Aman'}
+temp = my_dict.pop(2) # Removes item with key 2 and value 'Rahul'
+print(my_dict)
+# The del keyword removes the item with the specified key name.
+
+my_dict = {1 : 'Robin', 2 : 'Rahul', 3 : 'Aman'}
+del my_dict[2] # Removes item with key 2 and value 'Rahul'
+print(my_dict)
+# Dict() constructor
+
+# It is also possible to use the dict() constructor to make a new dictionary.
+
+my_dict = dict(1 = 'Robin', 2 = 'Rahul', 3 = 'Aman') # Note that this may not work
+# note the use of equals rather than colon for the assignment
+print(my_dict)
+# Try the following exercise in the editor below.
+
+# Given a dictionary called ‘my_dict’, perform the operations described in the comments:
+
+# update value for key "Sunday" to 7
+# adding another item with key "Default" having value 0
+
+def main():
+    my_dict = {
+        "Monday": 1,
+        "Tuesday": 2,
+        "Wednesday": 3,
+        "Thursday": 4,
+        "Friday": 5,
+        "Saturday": 6,
+        "Sunday": 0
+    }
+
+    # update value for key "Sunday" to 7
+    my_dict["Sunday"] = 7
+        
+    # adding another item with key "Default" having value 0
+    my_dict["Default"] = 0
+    
+    for i in sorted(my_dict):
+        print ("(\'" + i + "\',", str(my_dict[i]) + ")")
+
+    return 0
+
+if __name__ == '__main__':
+    main()
+    
+# # 4.4: Set
+
+# A set is a collection which is unordered and unindexed. In Python, sets are written with curly brackets. 
+ # A set cannot contain duplicates.
+
+my_set = {'one', 'two', 'three'}
+print(my_set)
+
+# using set()
+
+my_set = set(['one', 'two', 'three'])
+print(my_set)
+# Sets are unordered, so you cannot be sure in which order the items will appear.
+
+# Access Items
+
+# You cannot access items in a set by referring to an index or a key.
+ # But you can loop through the set items using a for loop, or ask if a specified value is present in a set, by using the in keyword.
+
+my_set = {'one', 'two', 'three'}
+for val in my_set:
+    print(val)
+# NOTE: Once set is created, you cannot change its items, but you can add new items.
+ # Below is an example:
+my_set = {'one', 'two', 'three'}
+id(my_set)
+my_set.add('four')
+id(my_set) # same instance
+# update is used to update set with another sequence
+my_set.update(['four', 'five', 'six'])
+id_temp = id(my_set)
+print(my_set)
+# my_set will contain {'one', 'two', 'three', 'four', 'five', 'six'}
+# Since there will be no duplicates. 
+# Remove Item
+
+# You can remove an item in a set, use the remove(), or the discard() method.
+
+# NOTE: If the item to remove does not exist, remove() will raise an error, but discard() will NOT raise any error.
+
+my_set = {'one', 'two', 'three', 'four'}
+id_temp = id(my_set) 
+my_set.remove('one') # removes 'one' from my_set
+my_set
+id_temp == id(my_set)
+my_set.discard('three') # removes 'three' from my_set
+id_temp == id(my_set)
+# my_set.remove('five') # throws an error
+my_set.discard('five') # Will not throw an error
+id_temp == id(my_set)
+
+# Try the following example in the editor given below.
+
+# Given a set called ‘my_set’, perform the operations described in the comments.
+
+def main():
+    my_set = set([1, 3, 2, 4, 1, 3, 3, 0])
+    
+    # add 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23 to my_set
+    to_be_added = [i for i in range(10, 24)]
+    to_be_added.pop(1)
+    my_set.update(to_be_added)
+    # delete 2 and 3 from my_set
+    my_set.discard(2)
+    my_set.discard(3)
+    
+    li = list(my_set)
+    li.sort()
+
+    print(li)
+    return 0
+
+if __name__ == '__main__':
+    main()
+    
+    
+# 4.5 Set operations
+
+s = set("Scaler")
+print(s.union("Academy"))
+
+print(s.intersection("Academy"))
+print(s.difference("Academy"))
+
+# Try the following excercise in the editor below.
+# You are given three sets X, Y, Z where X contains the children id who loves to play Football, 
+# Y contains the children id who loves to play Cricket, 
+# and Z contains the children id who loves to play BasketBall. You need to perform operations on these sets as decribed in comments.
+
+# Note: You are only required to add your code, no need to change any of the given statements.
+
+'''
+def printset(setx):
+    li = list(setx)
+    li.sort()
+    print(li)
+'''
+
+def main():
+    # Below are the three sets 
+    
+    X = set([1, 3, 7, 5, 6, 10, 20, 21, 22, 23, 55, 51, 2, 19, 9, 17, 27, 26, 25, 35])
+    Y = set([2, 10, 13, 18, 17, 22, 28, 27, 5, 49, 46, 43, 3])
+    Z = set([21, 1, 32, 25, 12, 11, 8, 10, 26, 16, 31, 20, 30, 14])
+    
+    # 'set1' contains the student who loves to play all three sports
+    set1 = X.intersection(Y).intersection(Z)
+        
+    printset(set1)
+    
+    # 'set2' contains the student who loves to play both Football and Cricket, but don't play Basketball
+    set2 = X.intersection(Y).difference(Z)
+    
+    printset(set2)
+    
+    # 'set3' contains the student who loves to play Cricket, but don't loves any other sport
+    set3 = Y.difference(X).difference(Z)
+    
+    printset(set3)
+    return 0
+
+if __name__ == '__main__':
+    main()
