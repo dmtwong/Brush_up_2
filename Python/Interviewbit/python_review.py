@@ -687,3 +687,276 @@ def main():
 
 if __name__ == '__main__':
     main()
+    
+    # 4.6 Nested List
+# A list can contain any sort object, even another list (sublist), which in turn can contain sublists themselves, and so on. 
+# This is known as nested list.
+
+# You can use them to arrange data into hierarchical structures.
+
+# Creating a Nested List
+
+my_list = ['a', 'b', ['cc', 'dd', ['eee', 'fff']], 'g', 'h']
+for i in my_list:
+    print(i)
+# Access Nested List
+
+# You can access individual items in a nested list using multiple indexes.
+print(my_list[2])  
+print(my_list[2][2])  
+print(my_list[2][2][0])  
+
+# Add items
+
+# To add new values to the end of the nested list, use append() method.
+
+# When you want to insert an item at a specific position in a nested list, use insert() method.
+
+# You can merge one list into another by using extend() method.
+
+my_list = ['a', ['bb', 'cc'], 'd']
+my_list[1].append('xx')
+print(my_list)
+# Prints ['a', ['bb', 'cc', 'xx'], 'd']
+
+my_list = ['a', ['bb', 'cc'], 'd']
+my_list[1].insert(0,'xx')
+print(my_list)
+# Prints ['a', ['xx', 'bb', 'cc'], 'd']
+
+my_list = ['a', ['bb', 'cc'], 'd']
+my_list[1].extend([1,2,3])
+print(my_list)
+# Prints ['a', ['bb', 'cc', 1, 2, 3], 'd']
+# Remove items
+
+# If you know the index of the item you want, you can use pop() method. It modifies the list and returns the removed item.
+
+# If you’re not sure where the item is in the list, use remove() method to delete it by value.
+
+my_list = ['a', ['bb', 'cc', 'dd'], 'e']
+x = my_list[1].pop(1)
+print(my_list)
+my_list.remove('fff')
+my_list[1].remove('bb')
+my_list
+# Prints ['a', ['bb', 'dd'], 'e']
+
+# removed item
+print(x)
+# Prints cc
+
+my_list = ['a', ['bb', 'cc', 'dd'], 'e']
+my_list[1].remove('cc')
+print(my_list)
+# Prints ['a', ['bb', 'dd'], 'e']
+# Try the following example in the editor below.
+
+# You are given a nested list named ‘my_list’, perform the operations as defined in the comments.
+
+# NOTE: You don’t need to change/remove any code. Only add the line of code, wherever needed.
+
+def main():
+    my_list = [['a', 'b'], ['cc', 'dd', ['eee', 'fff']], ['g', 'h']]
+    
+    # insert a new list [1, 2, 3] at the end of my_list
+    # Your code goes here
+    to_be_added = [1,2,3]
+    my_list.append(to_be_added)
+    print(my_list)
+    
+    # Delete 'eee' from the list
+    # Your code goes here
+    my_list[1][2].remove('eee')
+    print(my_list)
+    return 0
+    
+if __name__ == '__main__':
+    main()
+
+    # 4.7 List Comprehensions
+# List Comprehensions is a very powerful tool, which creates a new list based on another list, in a single, readable line.
+
+# Suppose, we want to separate the letters of the word InterviewBit and add the letters as items of a list.
+
+# The first thing that comes in mind would be using for loop.
+
+S = 'Interviewbit'
+letter_S = []
+for l in S:
+    letter_S.append(l)
+print(letter_S)
+# However, Python has an easier way to solve this issue using List Comprehension. List comprehension is an elegant way to define and create lists based on existing lists.
+
+S = 'InterviewBit'
+letter_S = [l for l in S]
+print(letter_S)
+# Conditions in Comprehension
+
+# Using if
+
+# Create a list of odd numbers in the range of 1 to 10
+
+my_list = [x for x in range(1, 10) if x%2 == 1]
+print(my_list)
+# Try the following example in the editor below.
+
+# You are given a list of strings, using list comprehensions create a new list of strings called ‘my_list’, which only contain the strings that have odd length.
+
+
+def main():
+    str_list = ['given', 'intern', 'InterviewBit', 'network', 'local', 'multiple', 'define', 'nodes', 'algorithm', 'allows', 'community', 'phase', 'single']
+    my_list = [x for x in str_list if len(x) % 2 == 1]
+    
+    print(my_list)
+    return 0
+
+if __name__ == '__main__':
+    main()
+
+    # 4.8 Classes and Objects
+# Python is an object oriented programming language. Almost everything in Python is an object, with its properties and methods.
+
+# Objects are an encapsulation of variables and functions into a single entity.
+
+# Objects get their variables and functions from classes. Classes are essentially a template to create your objects.
+
+# To create a class, use the keyword class
+
+class my_class:
+    my_var = "InterviewBit"
+    def my_function(self):
+        print("Welcome to " + self.my_var)
+        
+# Create an object of the above class
+
+my_obj = my_class()
+my_obj.my_function()
+# prints Welcome to InterviewBit
+# Note: The self parameter is a reference to the current instance of the class, and is used to access variables that belong to the class.
+
+# The init() Function
+
+# To understand the meaning of classes we have to understand the built-in __init__() function.
+
+# __init__() is always executed when the class is being initiated.
+
+# Use the __init__() function to assign values to object properties, or other operations that are necessary to do when the object is being created:
+
+class Student:
+    def __init__(self, name, branch):
+        self.name = name
+        self.branch = branch
+obj = Student("Robin", "CSE")
+print(obj.name)
+print(obj.branch)
+# Try the following example in the editor below
+
+# We have a class defined for Student. Create two new object for students called stud1 and stud2. 
+# Set stud1 name as ‘Robin’ and branch ‘CSE’ and stud2 name as ‘Rahul’ and branch as ‘ECE’.
+
+class Student:
+    def __init__(self, name, branch):
+        self.name = name
+        self.branch = branch
+    def printfunction(self):
+        print(self.name + " " + self.branch)
+
+def main():
+    #Your code goes here
+    stud1 = Student("Robin", "CSE")
+    stud2 = Student("Rahul", "ECE")
+    stud1.printfunction()
+    stud2.printfunction()
+    return 0
+
+if __name__ == '__main__':
+    main()
+    
+
+    # 4.9 Numpy arrays
+
+# Numpy arrays are great alternatives to Python Lists. 
+# Some of the key advantages of Numpy arrays are that they are fast, easy to work with, 
+# and give users the opportunity to perform calculations across entire arrays.
+
+# The array object in NumPy is called ndarray. We can create a NumPy ndarray object by using the array() function.
+
+import numpy as np
+my_arr = np.array([1, 2, 3, 4, 5])
+
+print(my_arr)
+
+type(my_arr)
+#  It shows that my_arr is numpy.ndarray type.
+# NumPy Arrays provides the ndim attribute that returns an integer that tells us how many dimensions the array have.
+
+a = np.array(42)
+a
+b = np.array([1, 2, 3, 4, 5])
+c = np.array([[1, 2, 3], [4, 5, 6]])
+c
+d = np.array([[[1, 2, 3], [4, 5, 6]], [[1, 2, 3], [4, 5, 6]]])
+d
+print(a.ndim) # prints 0 # constant
+print(b.ndim) # prints 1 
+print(c.ndim) # prints 2 # matrix
+print(d.ndim) # prints 3 # 3d
+# Access Array Elements
+
+# 1-D Array
+
+# Array indexing is the same as accessing an array element.
+
+my_arr = np.array([1, 2, 3, 4])
+
+print(my_arr[0]) # prints 1
+# 2-D Array
+
+# To access elements from 2-D arrays we can use comma separated integers representing the dimension and the index of the element.
+
+# Access the 5th element on 2nd dimension:
+
+my_arr = np.array([[1,2,3,4,5], [6,7,8,9,10]])
+
+print('5th element on 2nd dimension: ', my_arr[1, 4]) # prints 10
+# Negative Indexing
+
+# Use negative indexing to access an array from the end.
+
+my_arr = np.array([[1,2,3,4,5], [6,7,8,9,10]])
+
+print('Last element from 2nd dim: ', my_arr[1, -1]) # prints 10
+# Searching array
+
+# You can search an array for a certain value, and return the indexes that get a match.
+ # To search an array, use the where() method.
+
+my_arr = np.array([1, 2, 3, 4, 5, 4, 4])
+
+x = np.where(my_arr == 4)
+list(my_arr == 4)
+
+print(x) # Finds all the indexes of 4
+
+# Try the following example in the editor below.
+
+# You are given a list of integers called ‘arr’, convert this into ndarray and use where to find all the occurences of 2 in the array and assign that to x.
+
+# import numpy as np
+def main():
+    arr = [1, 3, 2, 2, 5, 3, 8, 2]
+    
+    # Convert the above array into ndarray
+    arr = np.array(arr)
+    
+    print(type(arr))
+    
+    # Use where to find all the indexes of 2
+    x = np.where(arr == 2)
+    
+    print(x)
+    return 0
+
+if __name__ == '__main__':
+    main()

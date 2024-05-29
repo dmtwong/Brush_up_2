@@ -54,6 +54,8 @@ Created on Tue May 28 19:27:20 2024
 
 def solve(A):
     n_A = len(A)
+    A = list(A)
+    # print(A)
     ix = n_A - 2 # star
     result = "-1"
     if (ix <= -1):
@@ -61,36 +63,233 @@ def solve(A):
     else:
         while ix >= 0:
             # print(A[ix], A[ix + 1])
+            # print(ix, A[ix])
             if A[ix] <A[ix + 1]:
+                # print(A[ix], A[ix + 1])
+                # print('jump')
                 break
             ix -= 1
-    for i in range(n_A - 1, -1, -1):
-        # print(i)
-        if ix < i:
-            break
-        if A[i] > A[ix]:
-            temp = A[ix]
-            A[ix] = A[i]
-            A[i] = temp
-            break
-    if ix == -1:
+    
+    if ix < 0:
         return result 
-    # print(ix)
-    result = []
-    temp = A[n_A - 1]
-    for i in range(n_A):
-        if i == ix:
-            temp2 = A[i]
-            result.append(temp)
-            continue
-        if i == n_A - 1:
-            result.append(temp2)
-            continue
-        result.append(A[i])
-    result = ''.join(result)
-    return result
+        # print(A)
+    else:    
+        for i in range(n_A - 1, 1, -1):
+            # print(i)
+            if A[i] > A[ix]:
+                # print(i, ix, A[i], A[ix])
+                temp = A[ix]
+                A[ix] = A[i]
+                A[i] = temp
+                break        
+        # print(A[ix + 1: ], list(reversed(A[ix + 1: ])))
+        A[ix + 1: ] = reversed(A[ix + 1: ]) 
+    return ''.join(A)
+
+
 A = '4321'        
 A2 = "251678"
 A3 = "1152" # Expect 1215
+solve(A)
+solve(A2)
+solve(A3)
+
+##############################
+# Editoral:
+    # Python
+# Python program to find the smallest number which  
+# is greater than a given no. has same set of  
+# digits as given number 
+  
+# Given number as int array, this function finds the  
+# greatest number and returns the number as integer 
+def findNext(number,n): 
+    # Start from the right most digit and find the first 
+    # digit that is smaller than the digit next to it
+    i=-1
+    for idx in range(n-1,0,-1): 
+        if number[idx] > number[idx-1]: 
+            i=idx
+            break
+               
+    # If no such digit found,then all numbers are in  
+    # descending order, no greater number is possible 
+    if i == -1:
+        return "-1"
+           
+    # Find the smallest digit on the right side of  
+    # (i-1)'th digit that is greater than number[i-1] 
+    x = number[i-1] 
+    smallest = i 
+    for j in range(i+1,n): 
+        if number[j] > x and number[j] < number[smallest]: 
+            smallest = j 
+           
+    # Swapping the above found smallest digit with (i-1)'th 
+    number[smallest],number[i-1] = number[i-1], number[smallest] 
+       
+    # X is the final number, in integer datatype  
+    x = 0
+    # Converting list upto i-1 into number 
+    for j in range(i): 
+        x = x * 10 + number[j] 
+       
+    # Sort the digits after i-1 in ascending order 
+    number = sorted(number[i:]) 
+    # converting the remaining sorted digits into number 
+    for j in range(n-i): 
+        x = x * 10 + number[j]
+    return x
+  
+class Solution:
+    # @param A : string
+    # @return a strings
+    def solve(self, A):
+        #list variable to integeres
+        int_list =[]
+        # converting characters to integers
+        for ch in A:
+            int_list.append(int(ch))
+        return findNext(int_list,len(int_list))
+
+# Scala
+# class Solution {
+#     def solve(A: String): String  = {
 
 
+#     def smallestOfGreat(array: Array[Char], v: Char): Int = {
+#       def loop(pos: Int): Int = {
+#         if (pos == array.length) - 1
+#         else
+#         if (array.charAt(pos) > v) loop(pos + 1) else pos
+#       }
+
+#       loop(0)
+#     }
+
+#     var lastButOne = A.length - 2
+
+#     while (lastButOne >= 0 && A.charAt(lastButOne) >= A.charAt(lastButOne + 1))
+#       lastButOne -= 1
+
+#     if (lastButOne < 0 || lastButOne == 0 && A.charAt(0) == A.charAt(1)) "-1"
+#     else {
+#       val (before, after) = A.toArray.splitAt(lastButOne)
+# //      println(s"before [${before.mkString("Array(", ", ", ")")}], after [${after.mkString("Array(", ", ", ")")}]")
+#       // take the smallest among the greater than X
+#       //      var minPos = after.tail.indexWhere(_ < after.head)
+#       var minPos = smallestOfGreat(after.tail, after.head)
+
+# //      println(s"head (1) ${after.head} minPos $minPos")
+#       if (minPos == -1) minPos = after.length - 1
+
+# //      println(s"head (2) ${after.head} minPos $minPos")
+#       val min = after.tail.charAt(minPos - 1)
+
+#       val tmp = after(0)
+#       after(0) = after(minPos)
+#       after(minPos) = tmp
+#       val after2 = after.tail.sorted
+
+#       val remaining = before.mkString + min ++ after2.mkString
+#       //      println(s"remaining $remaining")
+#       remaining
+#     }
+#   }
+
+
+
+
+
+
+# }
+
+# c++
+# string findNext(string number, int n)
+# {
+#    int i, j;
+
+#    // I) Start from the right most digit and find the first digit that is
+#    // smaller than the digit next to it.
+#    for (i = n-1; i > 0; i--)
+#        if (number[i] > number[i-1])
+#           break;
+
+#    // If no such digit is found, then all digits are in descending order
+#    // means there cannot be a greater number with same set of digits
+#    if (i==0)
+#    {
+#      return "-1";
+#    }
+
+#    // II) Find the smallest digit on right side of (i-1)'th digit that is
+#    // greater than number[i-1]
+#    char x = number[i-1];
+#    int smallest = i;
+#    for (j = i+1; j < n; j++)
+#        if (number[j] > x && number[j] < number[smallest])
+#            smallest = j;
+
+#    // III) Swap the above found smallest digit with number[i-1]
+#    swap(number[smallest], number[i-1]);
+#    string a=number.substr(i);
+#    string b=number.substr(0,i);
+#     // IV) Sort the digits after (i-1) in ascending order 
+#    sort(a.begin(),a.end());
+#    string ans=b+a;
+#    return ans;
+# }
+
+# string Solution::solve(string A) {
+#     return findNext(A,A.size());
+# }
+
+# GO 
+# /**
+#  * @input A : String
+#  * 
+#  * @Output string.
+#  */
+ 
+# import "sort"
+
+# func solve(A string )  (string) {
+#     if len(A) == 1 {
+#         return "-1"
+#     }
+
+#     var digits []byte
+#     res, i, pos := make([]byte, len(A)), 0, -1
+
+#     for j := len(A) - 1; j > 0; j-- {
+#         digits = append(digits, A[j])
+#         if A[j] > A[j-1] {
+#             pos = j - 1
+#             break
+#         }
+#     }
+
+#     if pos == -1 {
+#         return "-1"
+#     }
+
+#     for i = 0; i < pos; i++ {
+#         res[i] = A[i]
+#     }
+
+#     for j := 0; j < len(digits); j++ {
+#         if A[pos] < digits[j] {
+#             res[i], i = digits[j], i+1
+#             digits[j] = A[pos]
+#             break
+#         }
+#     }
+
+#     sort.Slice(digits, func(m, n int) bool { return digits[m] < digits[n] })
+
+#     for j := 0; j < len(digits); j++ {
+#         res[i], i = digits[j], i+1
+#     }
+
+#     return string(res)
+# }
