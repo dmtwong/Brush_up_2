@@ -960,3 +960,481 @@ def main():
 
 if __name__ == '__main__':
     main()
+    
+
+# # 5 Itertools & Collections
+    # 5.1 Itertools: Infinite Iterators
+# Python’s Itertool is a module that provides various functions that work on iterators to produce complex iterators. 
+# This module works as a fast, memory-efficient tool that is used either by themselves or in combination to form iterator algebra.
+
+# Different types of iterators provided by this module are 
+# Infinite Iterators, Combinatoric iterators and Terminating iterators.
+
+# Infinite Iterators
+
+# Iterator in Python is any Python type that can be used with a ‘for in loop’. 
+# Python lists, tuples, dictionaries, and sets are all examples of inbuilt iterators. 
+# But it is not necessary that an iterator object has to exhaust, sometimes it can be infinite. 
+# Such type of iterators are known as Infinite iterators.
+
+# Python provides three types of infinite itertors:
+
+# count(start, step): This iterator starts printing from the “start” number and prints infinitely. If steps are mentioned, the numbers are skipped else step is 1 by default.
+
+# See the below example for its use with for in loop.
+
+import itertools  
+# for in loop  
+for i in itertools.count(5, 5):  
+    if i == 35:  
+        break
+    else:  
+        print(i, end =" ")
+# prints 5 10 15 20 25 30
+# cycle(iterable): This iterator prints all values in order from the passed container. It restarts printing from the beginning again when all elements are printed in a cyclic manner.
+
+# import itertools  
+    
+count = 0
+    
+# for in loop  
+for i in itertools.cycle('AB'):  
+    print(i, count)
+    if count > 7:  
+        break
+    else:  
+        print(i, end = " ")  
+        count += 1
+# prints A B A B A B A B 
+# repeat(val, num): This iterator repeatedly prints the passed value infinite number of times. If the optional keyword num is mentioned, then it repeatedly prints num number of times.
+
+# import itertools   
+      
+# using repeat() to repeatedly print number   
+print ("Printing the numbers repeatedly : ")   
+print (list(itertools.repeat(25, 4)))
+# prints
+# Printing the numbers repeatedly : 
+# [25, 25, 25, 25]
+# Try the following excercise in the editor below.
+
+# Perform the operations as described in the comments in the order given.
+def main():
+    # print 1000 space separated integers starting from 1000 with common difference 500
+    # 1000 1500 2000 2500 3000........
+    # There should be exactly one space after every integer
+    import itertools  
+    import string
+    ix = 0
+    for i in itertools.count(1000, 500):  
+        if ix == 1000:  
+            break
+        else:
+            ix += 1
+            print(i, end =" ")
+            
+            # print('', end =" ")
+            # ix += 1
+            # print(i, end ="") #, end =" ")
+    
+    # print all uppercase alphabets 15 times, printing from A-Z then repeating again
+    # A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D........
+    # There should be exactly one space after every character
+    count = 0
+    for i in itertools.cycle(string.ascii_uppercase):  
+        # print(i, count)
+        if count > 15 * 26 - 1:  
+            break
+        else:  
+            print(i, end = " ")  
+            count += 1
+    # print list of integers containing 1000 4's
+    print (list(itertools.repeat(1000, 4)))
+    return 0
+
+if __name__ == '__main__':
+    main()
+    
+    # 5.2 Itertools: Terminating Iterators  
+# Terminating iterators are used to work on the short input sequences and produce the output based on the functionality of the method used.
+# Some of the terminating iterators are:
+
+# accumulate(iter, func): This iterator takes two arguments, iterable target and the function which would be followed at each iteration of value in target. If no function is passed, addition takes place by default. If the input iterable is empty, the output iterable will also be empty.
+
+import itertools  
+import operator  
+  
+my_arr = [1, 4, 5, 7]  
+    
+# using accumulate()  
+# prints the successive summation of elements  
+
+itertools.accumulate(my_arr)
+for i in itertools.accumulate(my_arr):
+    print(i)
+print (list(itertools.accumulate(my_arr)))  
+# prints [1, 5, 10, 17]
+# chain(iter1, iter2..): This function is used to print all the values in iterable targets one after another mentioned in its arguments.
+
+# import itertools 
+  
+arr1 = [1, 4, 5, 7]  
+    
+arr2 = [1, 6, 5, 9]  
+    
+arr3 = [8, 10, 5, 4] 
+  
+# using chain() to print all elements of lists
+
+print (list(itertools.chain(arr1, arr2, arr3)))
+a = [[2], [[3,4]]]
+print (list(itertools.chain(arr1, arr2, arr3, a)))
+
+# prints [1, 4, 5, 7, 1, 6, 5, 9, 8, 10, 5, 4]
+# tee(iterator, count):- This iterator splits the container into a number of iterators mentioned in the argument.
+
+ 
+import itertools  
+    
+arr = [2, 4, 6, 7, 8, 10, 20]  
+    
+# storing list in iterator  
+iti = iter(arr)   
+iti
+# using tee() to make a list of iterators  
+# makes list of 3 iterators having same values.  
+it = itertools.tee(iti, 3)  
+it    
+# printing the values of iterators  
+for i in range (0, 3):  
+    print (list(it[i]))
+# prints 
+# [2, 4, 6, 7, 8, 10, 20]
+# [2, 4, 6, 7, 8, 10, 20]
+# [2, 4, 6, 7, 8, 10, 20]
+# You can read all terminating iterators here.
+# 
+# Try the following example in the editor given below.
+
+# Given three list of integers called arr1, arr2, arr3 in the editor. Perform operations as described in the comments.
+
+
+import itertools
+import operator
+def main():
+    arr1 = [2, 1, 3, 4, 1]
+    arr2 = [1, 2, 4]
+    arr3 = [10, 3, 4, 3, 5, 6, 32, 11]
+    
+    # make a new arr4 which include all the elements in order first of arr1 then arr2 and then arr3
+    # Write your code here
+    arr4 = list(itertools.chain(arr1, arr2, arr3))
+    
+    print(arr4)
+    # itertools.accumulate(arr4, lambda x, y: x * y)
+    # using accumulate(), store the successive muliplication of elements of arr4 in a new list arr5
+    arr5 = list(itertools.accumulate(arr4, lambda x, y: x * y))
+    
+    print(arr5)
+    
+    return 0
+
+if __name__ == '__main__':
+    main()
+    # 5.4 Collections Module Tutorial
+# The collection Module in Python provides different types of containers. 
+# A Container is an object that is used to store different objects 
+# and provide a way to access the contained objects and iterate over them.
+
+# Some of the built-in containers are Tuple, List, Dictionary, etc.
+# Some of the different containers provided by collections module are discussed below.
+
+# Counters
+
+# A counter is a container that stores elements as dictionary keys, and their counts are stored as dictionary values.
+
+from collections import Counter
+my_list = [1, 1, 2, 3, 4, 5, 3, 2, 3, 4, 2, 1, 2, 3]
+set(my_list)
+print(Counter(my_list))
+# prints Counter({2: 4, 3: 4, 1: 3, 4: 2, 5: 1})
+
+print(Counter(my_list).items())
+# prints [(1, 3), (2, 4), (3, 4), (4, 2), (5, 1)]
+
+print(Counter(my_list).keys())
+# prints [1, 2, 3, 4, 5]
+
+print(Counter(myList).values())
+# prints [3, 4, 4, 2, 1]
+# DefaultDict
+
+# It’s similar to the usual dictionary (dict) container, 
+# but the only difference is that a defaultdict will have a default value if that key has not been set yet. 
+# If you didn’t use a defaultdict you’d have to check to see if that key exists, and if it doesn’t, set it to what you want.
+
+from collections import defaultdict  
+    
+# Defining the dict
+# When the int class is passed as the default_factory argument, then a defaultdict is created with default value as zero.
+
+d = defaultdict(int)  
+     
+my_list = [1, 2, 3, 2, 4, 2, 4, 1, 2]  
+     
+# Iterate through the list for keeping the count  
+
+for i in my_list:     
+    # The default value is 0 so there is no need to enter the key first  
+    d[i] += 1
+
+print(d)
+# prints defaultdict(<class 'int'>, {1: 2, 2: 3, 3: 1, 4: 2})
+# OrderedDict
+
+# An OrderedDict is a dictionary that remembers the order of the keys that were inserted first. If a new entry overwrites an existing entry, the original insertion position is left unchanged.
+
+from collections import OrderedDict  
+
+# Dictionary 
+d = {}  
+d['b'] = 1
+d['a'] = 2
+d['c'] = 3
+d['d'] = 4
+    
+for key, value in d.items():  
+    print(key, value)  
+# This can be printed in any order    
+# OrderDictionary 
+od = OrderedDict()  
+od['b'] = 1
+od['a'] = 2
+od['c'] = 3
+od['d'] = 4
+    
+for key, value in od.items():  
+    print(key, value)
+# The order remains same as the key are inserted
+# ChainMap
+
+# A ChainMap encapsulates many dictionaries into a single unit and returns a list of dictionaries.
+
+from collections import ChainMap  
+
+d1 = {'a': 1, 'b': 2} 
+d2 = {'c': 3, 'd': 4} 
+d3 = {'e': 5, 'f': 6} 
+  
+# Defining the chainmap  
+c = ChainMap(d1, d2, d3)  
+
+print(c)
+# prints ChainMap({'a': 1, 'b': 2}, {'c': 3, 'd': 4}, {'e': 5, 'f': 6})
+
+# Accessing Values using key name 
+print(c['a']) 
+# prints 1
+ print(c['f']) 
+# Accesing values using values() method 
+print(c.values()) 
+# prints ValuesView(ChainMap({'a': 1, 'b': 2}, {'c': 3, 'd': 4}, {'e': 5, 'f': 6}))
+  
+# Accessing keys using keys() method 
+print(c.keys())
+# prints KeysView(ChainMap({'a': 1, 'b': 2}, {'c': 3, 'd': 4}, {'e': 5, 'f': 6}))
+# NamedTuple
+
+# Basically, namedtuples are easy to create, lightweight object types.
+#  They turn tuples into convenient containers for simple tasks.
+#  With namedtuples, you don’t have to use integer indices for accessing members of a tuple.
+
+from collections import namedtuple
+Point = namedtuple('Point','x,y')
+pt1 = Point(1,2)
+pt2 = Point(3,4)
+dot_product = ( pt1.x * pt2.x ) +( pt1.y * pt2.y )
+print(dot_product)
+pt1
+pt1[0] = 2
+# prints 11
+# Deque
+
+# Deque (Doubly Ended Queue) is the optimized list for quicker append and pop operations from both sides of the container.
+ # It provides O(1) time complexity for append and pop operations as compared to list with O(n) time complexity.
+
+from collections import deque
+d = deque()
+d.append(1)
+print(d)
+# prints deque([1])
+
+d.appendleft(2)
+print(d)
+# prints deque([2, 1])
+
+d.clear() # empty the deque
+print(d)
+d.extend('1')
+print(d)
+# prints deque(['1'])
+
+d.extendleft('234')
+print(d)
+# prints deque(['4', '3', '2', '1'])
+print(d.count('1'))
+# prints 1
+
+print(d.pop())
+# prints '1'
+
+print(d)
+# prints deque(['4', '3', '2'])
+
+print(d.popleft())
+# prints '4'
+
+print(d)
+# prints deque(['3', '2'])
+
+d.extend('7896')
+print(d)
+# prints deque(['3', '2', '7', '8', '9', '6'])
+
+d.remove('2')
+print(d)
+# prints deque(['3', '7', '8', '9', '6'])
+
+d.reverse()
+print(d)
+# prints deque(['6', '9', '8', '7', '3'])
+
+d.rotate(3)
+print(d)
+# prints deque(['8', '7', '3', '6', '9'])
+# Try the following example in the editor below.
+
+# You are given two list of lowercase characters A of length N and B of length M. 
+# For each ith character in B print space separated indices of all the occurence of B[i] in A in a new line.
+
+# If the character is not present in A, then print -1.
+#  Considered index to be 0-based.
+
+# Example Input
+
+A = ['a', 'a', 'b', 'a', 'b', 'c', 'x']
+B = ['a', 'x', 'z']
+# Example Output
+
+# 0 1 3 
+# 6 
+# -1 
+
+def main():
+    A = input().split()
+    N = len(A)
+    B = input().split()
+    M = len(B)
+    # Your code goes here
+    from collections import defaultdict  
+    # Iterate through the list for keeping the count  
+    dd_1 = defaultdict(lambda: [-1])  
+    
+    for i in range(len(A)):     
+        # The default value is 0 so there is no need to enter the key first  
+        dd_1[A[i]].append(i)
+    # dd_1
+    for j in B:
+        # print(j)
+        if j in A:
+            # print(dd_1[j][1:])
+            print(*dd_1[j][1:])
+            # print(' '.join(str(dd_1[j][1:])))
+        else:
+            print(-1)
+    
+    return 0
+
+if __name__ == '__main__':
+    main()
+    
+    
+    # 5.5 Collections Module I
+# Problem Description
+# We had discussed about collections mode in python. Let's try the following problem using it.
+
+# There are N shops in the street and each shop has only single type of chocolate.
+
+# There are M number of children who are willing to pay Xi amount of money only if they get the chocolate of their desired type.
+
+# Find the total amount earned by all shopkeepers
+
+# Problem Constraints
+
+# 1 <= N, M <= 105
+
+# 1 <= Xi <= 109
+
+# 1 <= Type of chocolate <= 109
+
+# Input Format
+
+# First line consist of an integer N.
+
+# Second line consist of N space separated integers denoting the type of chocolate at N shops.
+
+# Third line consist of an integer M.
+
+# Each of the next M lines consist of two integers Xi and type of desired chocolate.
+
+# Output Format
+
+# Print the total amount earned by all shopkeepers.
+
+# Example Input
+
+# Input 1:
+
+# 10
+# 1 2 1 3 2 5 6 10 11 15
+# 5
+# 50 1
+# 20 3
+# 25 3
+# 5 12
+# 20 11
+# Input 2:
+
+# 5
+# 11 11 2 3 2
+# 4
+# 50 2 
+# 10 2
+# 20 2
+# 100 2
+# Example Output
+
+# Output 1:
+
+#  90
+# Output 2:
+
+#  60
+# Example Explanation
+
+# Explanation 1:
+
+# 1st, 2nd and 5th children will get the chocolate, so the total money earned is 90.
+# Explanation 2:
+
+# 1st and 2nd children will get the chocolate, so the total money earned is 60.
+
+def main():
+    # YOUR CODE GOES HERE
+    # Please take input and print output to standard input/output (stdin/stdout)
+    # E.g. 'input()/raw_input()' for input & 'print' for output
+
+    return 0
+
+if __name__ == '__main__':
+    main()
