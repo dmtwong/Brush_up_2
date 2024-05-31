@@ -985,11 +985,19 @@ if __name__ == '__main__':
 
 import itertools  
 # for in loop  
-for i in itertools.count(5, 5):  
-    if i == 35:  
+for i in itertools.count(5, 7):  
+    if i >= 35:  
         break
     else:  
         print(i, end =" ")
+import itertools  
+# for in loop  
+for i in itertools.count(5):  
+    if i >= 35:  
+        break
+    else:  
+        print(i, end =" ")
+        
 # prints 5 10 15 20 25 30
 # cycle(iterable): This iterator prints all values in order from the passed container. It restarts printing from the beginning again when all elements are printed in a cyclic manner.
 
@@ -1657,6 +1665,118 @@ def main():
     for item_id, tot_amt in my_order.items():
         print (item_id,tot_amt, end = ' ')
         print()
+    return 0
+
+if __name__ == '__main__':
+    main()
+    
+  # # Sect 6: Functionals & Regex
+  #     6.1 Python Functionals I
+# Let’s learn some new Python concepts!. Map, Filter, lambda and Reduce are paradigms of functional programming. 
+# They allow the programmer (you) to write simpler, shorter code, without neccessarily needing to bother about intricacies like loops and branching.
+
+# lambda
+
+# Lambda is a single expression anonymous function often used as an inline function. In simple words, it is a function that has only one line in its body. It proves very handy in functional and GUI programming.
+
+sum = lambda a, b, c: a + b + c
+print(sum(1, 2, 3))
+# # prints 6
+# Map
+
+# The map() function executes a specified function for each item in iterables(as many as they are). The item is sent to the function as a parameter.
+
+# map(function, iterables)
+# Let’s say you are given a list of names, and you have to print a list that contains the length of each name.
+
+print (list(map(len, ['Tina', 'Raj', 'Tom'])))  
+list(map(lambda x: x**2, range(7)))
+my_ints = [4, 6, 3, 9, 2, 8, 12]
+list(map(lambda x: x**2, my_ints))
+[x**2 for x in my_ints]
+
+# # prints [4, 3, 3]
+# Filter
+
+# While map() passes each element in the iterable through a function and returns the result of all elements having passed through the function, filter(), first of all, requires the function to return boolean values (true or false) and then passes each element in the iterable through the function, “filtering” away those that are false.
+
+# filter(func, iterable)
+# Let’s see an example.
+
+# The following is a list (iterable) of the scores of 10 students in an exam. Let’s filter out those who passed with scores more than 75…using filter.
+
+# # Python 3
+scores = [66, 90, 68, 59, 76, 60, 88, 74, 81, 65]
+
+def is_A_student(score):
+    return score > 75
+
+over_75 = list(filter(is_A_student, scores))
+
+my_names = ["scaler", "interviewbit", "rishabh", "student", "course"]
+def gt_7(name):
+    return len(name) >= 7
+is_gt_7 = list(filter(gt_7, my_names))
+is_gt_7
+filter(is_A_student, scores)
+list(filter(lambda name: len(name) >= 7, my_names))
+
+print(over_75)
+# Reduce
+
+# reduce applies a function of two arguments cumulatively to the elements of an iterable, optionally starting with an initial argument.
+
+# Reduce is not in the __builtins__ module, so it needs to be imported as it resides in the functools module.
+
+# reduce(func, iterable[, initial])
+# Say you have a list, say [1,2,3] and you have to find its sum.
+from functools import reduce
+
+print(reduce(lambda x, y : x + y,[1,2,3]))
+    my_numbers = [4, 6, 9, 23, 5]
+    # from functools import reduce
+    print(reduce(lambda x, y : x * y, my_numbers))
+# # prints 6
+# You can also define an initial value. If it is specified, the function will assume initial value as the value given, and then reduce. It is equivalent to adding the initial value at the beginning of the list.  
+
+# For example:
+
+# from functools import reduce
+# print(reduce(lambda x, y : x + y, [1,2,3], -3))
+# # prints 3
+
+# from fractions import gcd
+# print(reduce(gcd, [2,4,8], 3))
+# # prints 1
+# Try the following excerise in the editor below.
+
+# In this exercise, you’ll use each of map, filter, and reduce to fix broken code.
+
+from functools import reduce 
+def main():
+    
+    # Use map to print the square of each numbers 
+    my_ints = [4, 6, 3, 9, 2, 8, 12]
+    
+    # Use filter to print only the names that are less than or equal to seven letters
+    my_names = ["scaler", "interviewbit", "rishabh", "student", "course"]
+    #print(list(map(lambda x: x**2, my_ints)))
+    # [x**2 for x in my_ints]
+    # def gt_7(name):
+    #     return len(name) >= 7
+    #is_gt_7 = list(filter(gt_7, my_names))
+    # Use reduce to print the product of these numbers
+    my_numbers = [4, 6, 9, 23, 5]
+    # from functools import reduce
+    # print(reduce(lambda x, y : x * y, my_numbers))
+    # Fix all three respectively. 
+    map_result = list(map(lambda x: x**2, my_ints))
+    filter_result = list(filter(lambda name: len(name) <= 7, my_names))
+    reduce_result = reduce(lambda num1, num2: num1 * num2, my_numbers)
+    
+    print(map_result)
+    print(filter_result)
+    print(reduce_result)
     return 0
 
 if __name__ == '__main__':
