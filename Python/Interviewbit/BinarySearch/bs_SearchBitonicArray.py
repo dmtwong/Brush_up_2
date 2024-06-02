@@ -100,54 +100,54 @@ def solve(A, B):
     # Editoral:
         # Python 
 
-def ascendingBinarySearch(arr,low,high,key):
-    while(low<=high):
-        mid=low+(high-low)//2
-        if(arr[mid]==key):
-            return mid
-        if(arr[mid]>key):
-            high=mid-1
-        else:
-            low=mid+1
-    return -1
-def descendingBinarySearch(arr,low,high,key):
-    while(low<=high):
-        mid=low+(high-low)//2
-        if(arr[mid]==key):
-            return mid
-        if(arr[mid]<key):
-            high=mid-1
-        else:
-            low=mid+1
-    return -1
-def findBitonicPoint(arr,n,l,r):
-    mid=(l+r)//2
-    if(arr[mid]>arr[mid-1] and arr[mid]>arr[mid+1]):
-        return mid
-    elif(arr[mid]>arr[mid-1] and arr[mid]<arr[mid+1]):
-        return findBitonicPoint(arr,n,mid,r)
-    elif(arr[mid]<arr[mid-1] and arr[mid]>arr[mid+1]):
-        return findBitonicPoint(arr,n,l,mid)
-def searchBitonic(arr,n,key,index):
-    if(key>arr[index]):
-        return -1
-    elif(key==arr[index]):
-        return index
-    else:
-        temp=ascendingBinarySearch(arr,0,index-1,key)
-        if(temp!=-1):
-            return temp
-        return descendingBinarySearch(arr,index+1,n-1,key)
-def solveQ(arr,b):
-    index=findBitonicPoint(arr,len(arr),0,len(arr)-1)
-    x=searchBitonic(arr,len(arr),b,index)
-    return x 
-class Solution:
-    # @param A : list of integers
-    # @param B : integer
-    # @return an integer
-    def solve(self, A, B):
-        return solveQ(A,B)
+# def ascendingBinarySearch(arr,low,high,key):
+#     while(low<=high):
+#         mid=low+(high-low)//2
+#         if(arr[mid]==key):
+#             return mid
+#         if(arr[mid]>key):
+#             high=mid-1
+#         else:
+#             low=mid+1
+#     return -1
+# def descendingBinarySearch(arr,low,high,key):
+#     while(low<=high):
+#         mid=low+(high-low)//2
+#         if(arr[mid]==key):
+#             return mid
+#         if(arr[mid]<key):
+#             high=mid-1
+#         else:
+#             low=mid+1
+#     return -1
+# def findBitonicPoint(arr,n,l,r):
+#     mid=(l+r)//2
+#     if(arr[mid]>arr[mid-1] and arr[mid]>arr[mid+1]):
+#         return mid
+#     elif(arr[mid]>arr[mid-1] and arr[mid]<arr[mid+1]):
+#         return findBitonicPoint(arr,n,mid,r)
+#     elif(arr[mid]<arr[mid-1] and arr[mid]>arr[mid+1]):
+#         return findBitonicPoint(arr,n,l,mid)
+# def searchBitonic(arr,n,key,index):
+#     if(key>arr[index]):
+#         return -1
+#     elif(key==arr[index]):
+#         return index
+#     else:
+#         temp=ascendingBinarySearch(arr,0,index-1,key)
+#         if(temp!=-1):
+#             return temp
+#         return descendingBinarySearch(arr,index+1,n-1,key)
+# def solveQ(arr,b):
+#     index=findBitonicPoint(arr,len(arr),0,len(arr)-1)
+#     x=searchBitonic(arr,len(arr),b,index)
+#     return x 
+# class Solution:
+#     # @param A : list of integers
+#     # @param B : integer
+#     # @return an integer
+#     def solve(self, A, B):
+#         return solveQ(A,B)
     
     # C++
 #     // Function for binary search in ascending part
