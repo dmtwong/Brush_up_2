@@ -1781,3 +1781,36 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+  #     6.2 Validating Email Address using Filter
+# Problem Description
+
+# We had discussed about filter. Let's try a question using it.
+
+# You are given an integer N followed by N email addresses. Your task is to print a list containing only valid email addresses in lexicographical order.
+
+# Valid email addresses must follow these rules:
+
+# It must have the username@websitename.extension format type.
+# The username can only contain letters, digits, dashes and underscores.
+# The website name can only have letters and digits.
+# The maximum length of the extension is 3.
+# Input Format
+
+# The first line of input is the integer N, the number of email addresses.
+
+# N lines follow, each containing a string.
+
+# Output Format
+
+# Output a list containing the valid email addresses in lexicographical order. If the list is empty, just output an empty list, [].
+
+# Example Input
+
+# 3
+# sara@scaler.com
+# brian-23@scaler.com
+# brute_54@scaler.com
+# Example Output
+
+# ['brian-23@scaler.com', 'brute_54@scaler.com', 'sara@scaler.com']
