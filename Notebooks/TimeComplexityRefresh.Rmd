@@ -1,0 +1,85 @@
+---
+title: "Time Complexity Refresh"
+author: "David W."
+date: "2024-06-10"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Time Complexity
+
+What is Time complexity, and What is its need?
+
+There can be multiple approaches to solving a same problem, and the same applies to computer programming. For every approach (algorithm) following might be different:
+- time taken
+- amount of space used, and 
+- computational power  
+
+Need a way to distinguish these different approaches (algorithms) in order to choose the most efficient one, but how do we compare the algorithms which are written in 
+- different languages
+- running on two different machines
+
+By definition, Time complexity is 
+- Time taken by an algorithm/program to run, as a function of the length of the input.
+
+This approach allows use to compare between two different algorithms based on their efficiency, as it is directly tied with length of input 
+
+## Calculate Running Time
+As we know the running time of an algorithm can depend on various factors such as 
+1. the architecture of the computer (32 or 64-bit), 
+2. single or multiple processors, (Cannot parallel if single)
+3. read and write speed, (Harddisk?) 
+4. configuration of the machine, 
+5. **input** What complexity analysis focus 
+6. others 
+
+For simplicity, we are just going to take input as a variable, and keep the rest of the factors constant. Assume our machine to have the following features:
+
+Single Processor, 32 bits, sequential execution, takes 1 unit of time for 
+- arithmetic and logical operations
+- assignment and return statement
+
+####
+
+Let’s define a function T(n) as the runtime of a program as a function of the input.
+
+Here are some operations for which T(n)=1
+
+Assignment operator/ return statement  (Eg: int a=10).
+Arithmetic operations (Eg: + , - , * , / ).
+Logical operations ( Eg: & , | , ^).
+Example: 
+
+sum(list,size of list):			
+total=0					—->T(n)=1
+for i->0 to size of list		—->T(n)=n+1
+total+=list[i]			—->T(n)=n
+return total			 	—->T(n)=1
+Therefore the total runtime of the above program is T(n)=1+2(n+1)+2n+1=4n+4  (Linear)
+
+Similarly, if we have to find the sum of a matrix then the runtime would be quadratic.
+
+Let us take one more example.
+
+bool Find_One(arr[],int n)
+{
+   for (int i=0; i < n ; i++)
+      if ( arr[i] == 1)
+      {
+     return true;
+      }
+   return false;
+} 
+Is it possible to find the running time of the above algorithm without knowing the arr[]?
+
+We can only measure the best and the worst running time of the above algorithm.
+
+In the best case, the running time of the above algorithm would be constant ( the first element of the array itself is 1), whereas in the worst case the running time of the above algorithm would be linear ( there is no 1 in the array ).  
+
+In the next lessons, we are going to see how to do best case and worst case analysis in more detail.
+
+
+
