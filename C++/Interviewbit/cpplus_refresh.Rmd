@@ -1391,3 +1391,358 @@ int main() {
     return 0;
 }
 ```
+
+## Exercise 5.1 Structures
+Create a structure named ‘student’, containing three members: name (string), rollno(int) and marks(int).
+
+Set name to "Robin"
+Set rollno to 11
+Set marks to 86
+Note: Variable name for structure ‘student’ should be s1.
+```{r, eval = FALSE}
+/*
+#include<iostream>
+#include<string>
+using namespace std;
+*/
+
+
+// Create Structure named 'student'
+
+int main()  {
+    // Your code goes here
+    struct student{   
+      string name;
+      int rollno;
+      int marks;
+    };
+    student s1;
+    s1.name = "Robin";
+    s1.rollno =11;
+    s1.marks = 86;
+    
+    // Don't change the below code
+    cout<<s1.name<<endl;
+    cout<<s1.rollno<<endl;
+    cout<<s1.marks<<endl;
+    return 0;
+}
+```
+
+## Exercise 5.2 Classes and Objects
+
+We have a class defined for Student. 
+Create a function set_variable which takes three parameters name(string), age(int), rollno(int) and assign values to the member variables.
+Also, create a function print_variable which prints name, age, rollno each in new line.
+```{r, eval = FALSE}
+class Student{
+    string name;
+    int age;
+    int rollno;
+public:
+    // Create funtions here with the name given
+    void set_variable(string nm, int ag, int rolL){
+        name = nm;
+        age = ag;
+        rollno = roll;
+    }
+
+    void print_variable(){
+        cout<<name<<endl;
+        cout<<age<<endl;
+        cout<<rollno<<endl;
+    }    
+};
+
+```
+## Inheritance
+```{r, eval = FALSE}
+
+class Student{ //base class
+ //body
+}; 
+
+class UnderGrad : public Student{  //derived class
+  //body
+};
+```
+
+An object of child class has:
+
+All members **defined** in the child class, and all members **declared** in the parent class.
+
+
+- Protected Members: access specification similar to private, but accessible by objects of derived class.
+
+- Class Access Specifiers:
+public: the object of the derived class can be treated as an object of the base class.
+protected: more restrictive than public, but allows derived classes to know details of parents.
+private: prevents objects of the derived class to be treated as objects of base class.
+
+```{r, eval = FALSE}
+#include <iostream>
+using namespace std;
+
+// Base class
+class Shape {
+   public:
+      Shape(){length = 0; width = 0;} //default constructor
+      void setlength(int l, int w) {length = l; width = w;}
+  protected:
+      int length, width;
+};
+
+// Derived class
+class Square: public Shape {
+   public:
+      Square() : Shape() {} //declaring and initializing derived class constructor 
+      int get_Area(){ return (length * width); }
+};
+
+int main(void) {
+   Square sq; //making object of child class Square
+   sq.setlength(5, 5); //setting length equal to 5
+   // Print the area of the object.
+   cout << "Total area of square is: " << sq.get_Area() << endl;
+
+   return 0;
+}
+```
+## Exercise 5.3 Inheritance
+With reference to above example, create a derived class Rectangle inherited from class Shape, your task is to create a public function in it named get_Perimeter which return the perimeter of rectange.
+
+```{r, eval = FALSE}
+#include <iostream>
+using namespace std;
+
+// Base class
+class Shape {
+   public:
+      Shape(){length = 0; width = 0;} //default constructor
+      void setlength(int l, int w) {length = l; width = w;}
+  protected:
+      int length, width;
+};
+
+// Derived class
+class Square: public Shape {
+   public:
+      Square() : Shape() {} //declaring and initializing derived class constructor 
+      int get_Area(){ return (length * width); }
+};
+*/
+
+// Create class Rectangle
+class Rectangle: public Shape {
+   public:
+      Rectangle() : Shape() {} //declaring and initializing derived class constructor 
+      int get_Perimeter(){ return 2 * (length + width); }
+};
+
+int main(void) {
+   Square sq; //making object of child class Square
+   sq.setlength(5, 5); //setting length equal to 5
+   // Print the area of the object.
+   cout << "Total area of square is: " << sq.get_Area() << endl;
+   Rectangle rc;
+   rc.setlength(10, 5);
+   // Print the perimeter of the object.
+   cout << "Total perimeter of rectangle is: " << rc.get_Perimeter() << endl;
+   return 0;
+}
+```
+
+## Polymorphism
+-  a call to a member function will cause a different function to be executed depending on the type of object that invokes the function. Example: "+"
+
+C++ polymorphism is mainly divided into two types:
+
+1. Compile time Polymorphism: Function Overloading and Operator Overloading
+2. Runtime Polymorphism: Vitual Function
+
+#### Function Overloading
+c++ allows functions having the same name if they have different arguments (either types or number of arguments), note is it a compile-time polymorphism because the **compiler knows which function to execute before the program is compiled.**
+```{r, eval = FALSE}
+#include <iostream>
+using namespace std;
+int sum(int num1, int num2) {
+ return num1 + num2;
+}
+double sum(double num1, double num2) {
+ return num1 + num2;
+}
+int sum(int num1, int num2, int num3) {
+ return num1 + num2 + num3;
+}
+int main() {
+ cout << "Sum 1 = " << sum(5, 6) << endl;
+ cout << "Sum 2 = " << sum(5.5, 6.6) << endl;
+ cout << "Sum 3 = " << sum(5, 6, 7) << endl;
+return 0;
+}
+```
+
+#### Operator Overloading
+In C++, we cannot use operator overloading for basic types such as int, double, etc.
+We can overload an operator as long as we are operating **on user-defined types like objects or structures**.
+
+Syntax
+To overload an operator, we use a special operator function.
+
+class className {
+    ... .. ...
+    public
+        returnType operator symbol (arguments) {
+            ... .. ...
+        } 
+    ... .. ...
+};
+
+returnType: the return type of the function.
+operator: a keyword.
+symbol: the operator we want to overload. Like: +, <, -, ++, etc.
+arguments: the arguments passed to the function.
+
+Example: redefine how the + operator works and use it to **add the complex numbers** of c1 and c2:
+```{r, eval = FALSE}
+#include<iostream> 
+using namespace std; 
+  
+class Complex {
+private: 
+    int real, imag; 
+public:
+    Complex(int r = 0, int i =0)  {real = r;   imag = i;} // This is automatically called when '+' is used with 
+    // between two Complex objects 
+    Complex operator + (Complex const &obj) { 
+         Complex res; 
+         res.real = real + obj.real; 
+         res.imag = imag + obj.imag; 
+         return res; 
+    } 
+    void print() { cout << real << " + i" << imag << endl; } 
+}; 
+  
+int main() { 
+    Complex c1(10, 5), c2(2, 4); 
+    Complex c3 = c1 + c2; // An example call to "operator+" 
+    c3.print(); 
+}
+```
+
+## Example 5.4 Polymorphism
+Your task is to create two functions with same name “compute” and return type int. One will take two integer parameters and return absolute difference between them. Other will take one integer parameter and return the square of that number.
+
+```{r, eval = FALSE}
+/*
+#include<iostream>
+using namespace std;
+*/
+
+// YOUR CODE GOES HERE
+int compute(int x, int y){
+    return abs(x-y);
+}
+
+int compute(int z){ 
+    return z*z;
+}
+
+
+/*
+int main()  {
+    int x,y;
+    cin>>x>>y;
+    cout<<compute(x,y)<<endl;
+    int z;
+    cin>>z;
+    cout<<compute(z)<<endl;
+    return 0;
+}
+*/
+  ```
+##  Exercise 5.5 Virtual Functions (Runtime Polymorphism)
+You will first build three classes:
+
+Animal (parent class)
+Dog (derived class)
+Cat (derived class)
+Dog and Cat class will inherit from Animal.
+
+Animal class:
+Has one protected variable for age of the mammal.
+A constructor that takes the age of animal as input and sets it.
+The function Eat() that displays "Animal eats food".
+Function get_Age() which returns the age of the animal.
+
+Dog class:
+Inherits all the members from Animal class.
+Implement all member functions of Animal class for Dog class.
+Eat() should display "Dog eats meat".
+get_Age() should return Dog’s age.
+
+Cat class:
+Inherits all the members from Animal class.
+Implement all member functions of Animal class for Cat class.
+Eat() should display "Cat eats meat".
+get_Age() should return Cat’s age.
+```{r, eval = FALSE}
+class Animal{
+public:
+    Animal(int age){
+        itsAge = age;
+    }
+    virtual void Eat(){
+        cout << "Animal eats food"<<endl;
+    }
+    virtual int get_Age(){
+        return itsAge;
+    }
+protected:
+    int itsAge;
+};
+
+class Dog: public Animal{
+public:
+    Dog(int age=0) : Animal(age) {}
+    void Eat(){
+        cout << "Dog eats meat"<<endl;
+    }
+    int get_Age(){
+        return itsAge;
+    }
+};
+
+class Cat: public Animal{
+public:
+    Cat(int age=0): Animal(age){}
+    void Eat(){
+        cout << "Cat eats meat"<<endl;
+    }
+    int get_Age(){
+        return itsAge;
+    }
+};
+```
+
+#6.1 STL Basics
+## Exercise 6.1.1 Vector
+First line of the input contains an integer N denoting the number of integers.
+Second line contains N space-separated integers. 
+Third line contains an integer X denoting the index(0-based) of the N integers which needs to be deleted.
+
+Your task is to print the N-1 integers in sorted order (ascending). Each integer in a new line.
+Constraints
+1 <= N <= 105  
+0 <= X < N
+Sample Input
+5
+10 5 2 3 10
+2
+Sample Output
+3
+5
+10
+10
+
+
