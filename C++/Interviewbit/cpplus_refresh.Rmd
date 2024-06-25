@@ -1660,7 +1660,7 @@ int main()  {
     return 0;
 }
 */
-  ```
+```
 ##  Exercise 5.5 Virtual Functions (Runtime Polymorphism)
 You will first build three classes:
 
@@ -1745,4 +1745,60 @@ Sample Output
 10
 10
 
+## Exercise 6.1.2 Upper & Lower bound
 
+You are given N **integers in sorted order** (not necessarily distinct). 
+Also, you are given Q queries. In each query, check if x exist. Return leftmost index if present and rightmost ix if not that will keep the array sorted
+
+NOTE: You are not required to insert the value in the array. Array is not changed at any point.
+
+Input Format
+
+First line contains an integer N.
+Second line contains N space-separarted integer in sorted order.
+Third line contains an integer Q, the number of queries. 
+Each of the next Q lines contain a single integer X.
+Output Format
+For each query, print the index as described.
+Sample Input
+6
+5 15 21 21 22 22
+5
+10
+21
+23
+3
+22
+Sample Output
+1
+2
+6
+0
+4
+```{r, eval = FALSE}
+#include<iostream>
+#include<vector>
+#include<algorithm>
+#include<iterator>
+using namespace std;
+
+int main()  {
+    // YOUR CODE GOES HERE
+    // Please take input and print output to standard input/output (stdin/stdout)
+    // E.g. 'cin' for input & 'cout' for output
+    int N;
+    cin >> N;
+    vector<int> arr_1(N);
+    int Q; 
+    int X;
+    
+    for(int i = 0; i < N; i++){
+      cin >> arr_1[i];
+    }
+    
+    cin >> Q;
+    
+    return 0;
+}
+
+```
